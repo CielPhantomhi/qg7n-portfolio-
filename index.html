@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qg7n — Roblox Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Each slide */
+.hero-slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+}
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-slide img,
+.hero-slide video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.55) brightness(0.35);
+}
+
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    /* left fade so text pops */
+    linear-gradient(to right, rgba(13,13,15,0.82) 38%, rgba(13,13,15,0.25) 100%),
+    /* bottom vignette */
+    linear-gradient(to top, rgba(13,13,15,0.9) 0%, transparent 40%),
+    /* top vignette for nav */
+    linear-gradient(to bottom, rgba(13,13,15,0.6) 0%, transparent 30%);
+  z-index: 1;
+}
+
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* Progress dots */
+.hero-dots {
+  position: absolute;
+  bottom: 2rem;
+  right: 3rem;
+  display: flex;
+  gap: .5rem;
+  z-index: 2;
+}
+.hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  transition: background .4s, transform .4s;
+  cursor: pointer;
+}
+.hero-dot.active {
+  background: var(--accent);
+  transform: scale(1.4);
+}
+
+
+.hero-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: 3;
+  width: 0%;
+  transition: width linear;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Qg7n<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+
+
+  <div class="hero-bg" id="heroBg">
+
+  </div>
+  <div class="hero-bg-overlay"></div>
+
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+      Available for work
+    </div>
+    <h1 class="hero-title">
+      Roblox Developer<br>
+    </h1>
+    <p class="hero-sub">I'm a Roblox Developer active in multiple fields like Building, Modeling, Animating and GUI!</p>
+    <div class="hero-actions">
+      <a href="#works" class="btn btn-primary">View my work</a>
+      <a href="#contact" class="btn btn-secondary">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="hero-dots" id="heroDots"></div>
+  <div class="hero-progress" id="heroProgress"></div>
+</div>
+
+<div class="divider"></div>
+
+<section class="section" id="about">
+<div class="about-grid reveal">
+  <div class="about-text">
+    <div class="section-header">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Who I am</h2>
+    </div>
+    <p>I'm <strong>Qg7n</strong>, a Roblox developer focused on SCP Foundations and roleplay games.</p>
+    <p>I've been developing in Roblox Studio for <strong>multiple years</strong> now, originally just messing around with personal projects, and then <strong>slowly joining other groups and helping</strong> out friends.</p>
+    <p>I work on full projects and games, or just small assets that need to be done.</p>
+
+    <div class="tools">
+      <p class="tools-label">Tools I use</p>
+      <div class="tools-list">
+        <span class="tool-chip"><span class="dot"></span>Roblox Studio</span>
+        <span class="tool-chip"><span class="dot"></span>Blender</span>
+        <span class="tool-chip"><span class="dot"></span>Aseprite</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-right">
+    <div class="profile-image">
+      <a href="https://www.roblox.com/users/1492936918/profile" target="_blank">
+        <img src="https://qg7n.carrd.co/assets/images/image01.png?v=f65ca5d5" alt="Qg7n Roblox Profile">
+      </a>
+    </div>
+
+    <div class="services">
+      <div class="service-card">
+        <h3>Building</h3>
+        <p>Custom interior, terrain, and detailed builds for SCP and roleplating games.</p>
+      </div>
+      <div class="service-card">
+        <h3>UI / GUI Design</h3>
+        <p>Roblox GUI for all sorts of things, like menus or pop-ups.</p>
+      </div>
+      <div class="service-card">
+        <h3>3D Modeling</h3>
+        <p>Custom meshes and objects created in Blender or Roblox Studio directly, usually small triangle counts.</p>
+      </div>
+      <div class="service-card">
+        <h3>Animations</h3>
+        <p>Animations for tools and custom entities.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<div class="works-section" id="works">
+  <div class="works-wrap">
+    <div class="section-header reveal">
+      <p class="section-label">Works</p>
+      <h2 class="section-title">Selected projects</h2>
+    </div>
+
+    <div class="tab-bar reveal">
+      <button class="tab-btn active" data-tab="all">All</button>
+      <button class="tab-btn" data-tab="building">Building</button>
+      <button class="tab-btn" data-tab="modeling">Modeling</button>
+      <button class="tab-btn" data-tab="animation">Animation</button>
+      <button class="tab-btn" data-tab="gui">GUI</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-all">
+      <div class="works-grid">
+
+        <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://qg7n.carrd.co/assets/images/gallery01/95c86842_original.jpg?v=f65ca5d5" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Building</p>
+        <p class="work-name">Facility Entrance</p>
+        <p class="work-desc">SCP Foundation Entrance for a Doors-like game.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1147877708026622032/1483491808947474483/SCP-106_Screenshot.png?ex=69bc1a69&is=69bac8e9&hm=c73d3dd25033023f50242da17b18e3fc34aa1127afd40ef21c55483648fe2915&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">SCP-106</p>
+        <p class="work-desc">The SCP-106 Model used in my game. Animated and Rigged.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1147877708026622032/1483491808540364856/SCP-131_Screenshot.png?ex=69bc1a69&is=69bac8e9&hm=b87fc861de99465c35920c02272a5b9c4e2316bf556889fa5c5d7a5a514bcfea&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">SCP-131</p>
+        <p class="work-desc">The SCP-131 used in Site Neptune. Animated and Rigged.</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-cat="animation" data-title="SCP-079 'Killer Doll Morph' Running" data-desc="A Running Animation for one doll that SCP-079 can take control of.">
+      <div class="work-thumb">
+        <video class="work-thumb-media" 
+               src="https://cdn.discordapp.com/attachments/1147877708026622032/1483491811342418003/2026-03-15_17-05-27.mp4?ex=69bc1a69&is=69bac8e9&hm=259350e6ba149e49b5afb667daaf0b6970a2d8e50e75dfa34bf99e6a556aac4e&" 
+               muted 
+               loop 
+               autoplay 
+               playsinline></video>
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Animation</p>
+        <p class="work-name">SCP-079 "Killer Doll Morph" Running</p>
+        <p class="work-desc">A Running Animation for one doll that SCP-079 can take control of.</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-cat="animation" data-title="SCP-079 Animations" data-desc="Animations for SCP-079 made in Aseprite.">
+      <div class="work-thumb">
+        <video class="work-thumb-media" 
+               src="https://cdn.discordapp.com/attachments/1136594975061188669/1345328943385022495/2025-03-01_10-35-36.mp4?ex=69bbc3b7&is=69ba7237&hm=2c150e774bee1edfe5a79c1fa0641a83e7e600d6519dee3689715c11e2c81996&" 
+               muted 
+               loop 
+               autoplay 
+               playsinline></video>
+      </div>
+      <div class="work-info">
+        <p class="work-cat">GUI</p>
+        <p class="work-name">Hacking GUI</p>
+        <p class="work-desc">Hacking Minigame GUI.</p>
+      </div>
+    </div>
+
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-building">
+  <div class="works-grid">
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://qg7n.carrd.co/assets/images/gallery01/95c86842_original.jpg?v=f65ca5d5" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Building</p>
+        <p class="work-name">Facility Entrance</p>
+        <p class="work-desc">SCP Foundation Entrance for a Doors-like game.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://qg7n.carrd.co/assets/images/gallery01/939bb5ab_original.jpg?v=f65ca5d5" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Building</p>
+        <p class="work-name">Facility Room</p>
+        <p class="work-desc">One of the randomly generated rooms.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://qg7n.carrd.co/assets/images/gallery01/1cee8c0b_original.jpg?v=f65ca5d5" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Building</p>
+        <p class="work-name">T-Shaped Corridor</p>
+        <p class="work-desc">This is one of the randomly generated T-Shaped hallways throughout the game. The environment is intentionally left empty for props to generate.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://qg7n.carrd.co/assets/images/gallery02/7c743795_original.jpg?v=f65ca5d5" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Building</p>
+        <p class="work-name">Entrance Sector</p>
+        <p class="work-desc">An E&T Entrance Sector I made for Site Neptune.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://qg7n.carrd.co/assets/images/gallery02/3dd6ae6e_original.jpg?v=f65ca5d5" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Building</p>
+        <p class="work-name">SCP-682 Chamber</p>
+        <p class="work-desc">The SCP-682 Chamber I created for Site Neptune.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://qg7n.carrd.co/assets/images/gallery03/94903008_original.jpg?v=f65ca5d5" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Building</p>
+        <p class="work-name">Old unfinished EC Wing</p>
+        <p class="work-desc">An early concept for Site Neptune's EC Spawn. Was scrapped due to the site being too small.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <div class="tab-panel" id="tab-modeling">
+      <div class="works-grid">
+        <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1147877708026622032/1483491807861018664/SCP-280_Screenshot.png?ex=69bc1a68&is=69bac8e8&hm=030c0866d3d2b65d3a3b38368b44fedbf8aa4fef93d8c9b12dc23a3907ecf26b&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">SCP-280</p>
+        <p class="work-desc">The SCP-280 Model for my game. Animated and Rigged.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1147877708026622032/1483491808540364856/SCP-131_Screenshot.png?ex=69bc1a69&is=69bac8e9&hm=b87fc861de99465c35920c02272a5b9c4e2316bf556889fa5c5d7a5a514bcfea&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">SCP-131</p>
+        <p class="work-desc">The SCP-131 used in Site Neptune. Animated and Rigged.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1147877708026622032/1483491808947474483/SCP-106_Screenshot.png?ex=69bc1a69&is=69bac8e9&hm=c73d3dd25033023f50242da17b18e3fc34aa1127afd40ef21c55483648fe2915&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">SCP-106</p>
+        <p class="work-desc">The SCP-106 Model used in my game. Animated and Rigged.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1147877708026622032/1483491809320501371/SCP-1048_Screenshot.png?ex=69bc1a69&is=69bac8e9&hm=9b0bebd858a1e4530f216705c78dbeaec96de8904342baa8db2199c2cecaac22&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">SCP-1048</p>
+        <p class="work-desc">The SCP-1048 Model used in my game. Animated and Rigged.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1147877708026622032/1483491809715032144/SCP-049_Screenshot.png?ex=69bc1a69&is=69bac8e9&hm=a57939a17303d4bf744fb727449c35d3099ecc823e2448273072aff31156af35&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">SCP-049</p>
+        <p class="work-desc">The SCP-049 Model used in my game. Just Rigged.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1147877708026622032/1483491810117419112/SCP-082_Breached.png?ex=69bc1a69&is=69bac8e9&hm=cd36bea4d84677eb92e2bee1293be798ecb3eefb0e1575e4f60e9b94abc1aff7&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">SCP-082</p>
+        <p class="work-desc">The SCP-082 Model used in Site Neptune. Rigged and Animated.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1147877708026622032/1483491810604093560/GeneralSCPsBreached.png?ex=69bc1a69&is=69bac8e9&hm=8f6fbb985f2fb65049405fa63c5610ebc707ac813208fd5f9e80ab5f58b5c258&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">General item SCPs</p>
+        <p class="work-desc">A few item SCPs I made for my game (1025, 330, 207, 034, 005).</p>
+      </div>
+    </div>
+
+        <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1484172321676853391/1484172493953564682/image.png?ex=69bd42d9&is=69bbf159&hm=8d2b459e08d0a2d74e136c90a1315fe6be52920ce4d65f0d9c40a57a32c30b89&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">More SCPs</p>
+        <p class="work-desc">SCP-049 Beak, 1025, 662 Bell and a SCP-217 morph.</p>
+      </div>
+    </div>
+
+        <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1484172321676853391/1484172829648879727/image.png?ex=69bd4329&is=69bbf1a9&hm=59f4ce2ac4153cb76e7d876f274232e824be3ee2e22d2c14be1816e25b3e7942&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">Office Furniture</p>
+        <p class="work-desc">Some Office Furniture for my game.</p>
+      </div>
+    </div>
+
+         <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1484172321676853391/1484173059207467159/image.png?ex=69bd435f&is=69bbf1df&hm=95012882e7c05e4ffca9e29dcd8fd97df8b56141c7a845b9c57f0d2247d4088b&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">Supply Furniture</p>
+        <p class="work-desc">Supply Furniture like a closet and a drawer.</p>
+      </div>
+    </div>
+
+        <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1484172321676853391/1484173152652230727/image.png?ex=69bd4376&is=69bbf1f6&hm=a4ad072e5757fe32bcacc5cb71a35d7e322c3bcbc7eccbbf953891e0145d2e4b&=&format=webp&quality=lossless" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Modeling</p>
+        <p class="work-name">An SCP-914 Model</p>
+        <p class="work-desc">Generic SCP-914 model, lore accurate.</p>
+      </div>
+    </div>
+    
+        </div>
+      </div>
+    </div>
+
+<div class="tab-panel" id="tab-animation">
+  <div class="works-grid">
+
+    <div class="work-card" data-cat="animation" data-title="SCP-079 'Killer Doll Morph' Running" data-desc="A Running Animation for one doll that SCP-079 can take control of.">
+      <div class="work-thumb">
+        <video class="work-thumb-media" 
+               src="https://cdn.discordapp.com/attachments/1147877708026622032/1483491811342418003/2026-03-15_17-05-27.mp4?ex=69bc1a69&is=69bac8e9&hm=259350e6ba149e49b5afb667daaf0b6970a2d8e50e75dfa34bf99e6a556aac4e&" 
+               muted 
+               loop 
+               autoplay 
+               playsinline></video>
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Animation</p>
+        <p class="work-name">SCP-079 "Killer Doll Morph" Running</p>
+        <p class="work-desc">A Running Animation for one doll that SCP-079 can take control of.</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-cat="animation" data-title="SCP-079 'Killer Doll Morph' Attacking" data-desc="An Attacking Animation for one doll that SCP-079 can take control of.">
+      <div class="work-thumb">
+        <video class="work-thumb-media" 
+               src="https://cdn.discordapp.com/attachments/1147877708026622032/1483491812160180406/2026-03-15_17-08-42.mp4?ex=69bc1a69&is=69bac8e9&hm=8cfb580fe5e6986167bbfaf763db11e979e16ccce8a57967f31706b99249831a&" 
+               muted 
+               loop 
+               autoplay 
+               playsinline></video>
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Animation</p>
+        <p class="work-name">SCP-079 "Killer Doll Morph" Attacking</p>
+        <p class="work-desc">An Attacking Animation for one doll that SCP-079 can take control of.</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-cat="animation" data-title="SCP-079 Animations" data-desc="Animations for SCP-079 made in Aseprite.">
+      <div class="work-thumb">
+        <video class="work-thumb-media" 
+               src="https://cdn.discordapp.com/attachments/1147877708026622032/1483491812986585251/2026-03-15_17-11-41.mp4?ex=69bc1a6a&is=69bac8ea&hm=dae8a1bbaf5a8d4fde50eb45877fb539f0d913fed2bf178726579c42225e8406&" 
+               muted 
+               loop 
+               autoplay 
+               playsinline></video>
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Animation</p>
+        <p class="work-name">SCP-079 Animations</p>
+        <p class="work-desc">Animations for SCP-079 made in Aseprite.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://media.discordapp.net/attachments/1209934337416626176/1476288879874277477/079withblink.gif?ex=69bb9b69&is=69ba49e9&hm=5f35126ba3591b0845bafe2ed5209098319a2a645f3874d7d2d5c9aa163a10a6&=" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">Animation</p>
+        <p class="work-name">SCP-079</p>
+        <p class="work-desc">SCP-079 Pixel Art Animation.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="tab-panel" id="tab-gui">
+  <div class="works-grid">
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://qg7n-portfolio.carrd.co/assets/images/image07.jpg?v=d21d37bd" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">GUI</p>
+        <p class="work-name">SCP Directory</p>
+        <p class="work-desc">Working SCP Directory.</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-cat="animation" data-title="SCP-079 Animations" data-desc="Animations for SCP-079 made in Aseprite.">
+      <div class="work-thumb">
+        <video class="work-thumb-media" 
+               src="https://cdn.discordapp.com/attachments/1136594975061188669/1345328943385022495/2025-03-01_10-35-36.mp4?ex=69bbc3b7&is=69ba7237&hm=2c150e774bee1edfe5a79c1fa0641a83e7e600d6519dee3689715c11e2c81996&" 
+               muted 
+               loop 
+               autoplay 
+               playsinline></video>
+      </div>
+      <div class="work-info">
+        <p class="work-cat">GUI</p>
+        <p class="work-name">Hacking GUI</p>
+        <p class="work-desc">Hacking Minigame GUI.</p>
+      </div>
+    </div>
+
+    <div class="work-card" data-cat="animation" data-title="SCP-079 Animations" data-desc="Animations for SCP-079 made in Aseprite.">
+      <div class="work-thumb">
+        <video class="work-thumb-media" 
+               src="https://cdn.discordapp.com/attachments/1136594975061188669/1342614879269421177/2025-02-21_22-52-05.mp4?ex=69bbc74b&is=69ba75cb&hm=7d9987f9dfd20cf5c1d877cffe5ae8ba3c1f730748dbbf2bb7cbd8f6d46efa73&" 
+               muted 
+               loop 
+               autoplay 
+               playsinline></video>
+      </div>
+      <div class="work-info">
+        <p class="work-cat">GUI</p>
+        <p class="work-name">Main Menu GUI</p>
+        <p class="work-desc">Main Menu GUI for Site Neptune.</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://qg7n-portfolio.carrd.co/assets/images/image05.jpg?v=d21d37bd" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">GUI</p>
+        <p class="work-name">Application Center</p>
+        <p class="work-desc">Site Neptune's Application Center</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <img src="https://qg7n-portfolio.carrd.co/assets/images/image06.jpg?v=d21d37bd" class="work-img">
+      </div>
+      <div class="work-info">
+        <p class="work-cat">GUI</p>
+        <p class="work-name">Clipboard GUI</p>
+        <p class="work-desc">Site Neptune's Clipboard</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section class="section" id="contact">
+  <div class="section-header reveal">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Get in touch</h2>
+  </div>
+  <div class="contact-grid reveal">
+    <div class="contact-text">
+      <p>Have a project in mind? The best way to reach me is on Discord — I'm usually pretty quick to respond.</p>
+      <div class="discord-card">
+        <div class="discord-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        </div>
+        <div class="discord-info">
+          <h3>Discord</h3>
+          <p>Message me directly: <span class="discord-username">qg7n</span></p>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleForm(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your name</label>
+          <input type="text" id="fname" placeholder="Name" required>
+        </div>
+        <div class="form-group">
+          <label>Discord username</label>
+          <input type="text" id="fdiscord" placeholder="yourname">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>What do you need?</label>
+        <select id="ftype">
+          <option value="">Select a service…</option>
+          <option>Map / Environment build</option>
+          <option>UI / GUI design</option>
+          <option>3D model or animation</option>
+          <option>2D asset / sprite</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell me about your project</label>
+        <textarea id="fmsg" placeholder="Describe what you're looking for…" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send message</button>
+      <p id="form-msg"></p>
+    </form>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <div class="lb-inner">
+    <button class="lb-close" id="lbClose">✕ Close</button>
+    <div class="lb-media" id="lbMedia">
+      <span class="lb-ph"></span>
+    </div>
+    <div class="lb-info">
+      <h3 id="lbTitle"></h3>
+      <p id="lbDesc"></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Qg7n</span>
+  <span>Roblox Developer &amp; 3D Artist</span>
+</footer>
+
+<script src="script.js"></script>
+<script>
+
+(function () {
+
+  const SLIDES = [
+    { type: 'img', src: 'https://qg7n.carrd.co/assets/images/gallery01/95c86842_original.jpg?v=f65ca5d5' },
+    { type: 'img', src: 'https://qg7n.carrd.co/assets/images/gallery01/939bb5ab_original.jpg?v=f65ca5d5' },
+    { type: 'img', src: 'https://qg7n.carrd.co/assets/images/gallery01/1cee8c0b_original.jpg?v=f65ca5d5' },
+    { type: 'img', src: 'https://qg7n.carrd.co/assets/images/gallery02/7c743795_original.jpg?v=f65ca5d5' },
+    { type: 'img', src: 'https://qg7n.carrd.co/assets/images/gallery02/3dd6ae6e_original.jpg?v=f65ca5d5' },
+    { type: 'img', src: 'https://media.discordapp.net/attachments/1147877708026622032/1483491808947474483/SCP-106_Screenshot.png?ex=69bc1a69&is=69bac8e9&hm=c73d3dd25033023f50242da17b18e3fc34aa1127afd40ef21c55483648fe2915&=&format=webp&quality=lossless' },
+    { type: 'img', src: 'https://media.discordapp.net/attachments/1147877708026622032/1483491810117419112/SCP-082_Breached.png?ex=69bc1a69&is=69bac8e9&hm=cd36bea4d84677eb92e2bee1293be798ecb3eefb0e1575e4f60e9b94abc1aff7&=&format=webp&quality=lossless' },
+    { type: 'img', src: 'https://media.discordapp.net/attachments/1147877708026622032/1483491807861018664/SCP-280_Screenshot.png?ex=69bc1a68&is=69bac8e8&hm=030c0866d3d2b65d3a3b38368b44fedbf8aa4fef93d8c9b12dc23a3907ecf26b&=&format=webp&quality=lossless' },
+    { type: 'video', src: 'https://cdn.discordapp.com/attachments/1147877708026622032/1483491811342418003/2026-03-15_17-05-27.mp4?ex=69bc1a69&is=69bac8e9&hm=259350e6ba149e49b5afb667daaf0b6970a2d8e50e75dfa34bf99e6a556aac4e&' },
+    { type: 'video', src: 'https://cdn.discordapp.com/attachments/1136594975061188669/1345328943385022495/2025-03-01_10-35-36.mp4?ex=69bbc3b7&is=69ba7237&hm=2c150e774bee1edfe5a79c1fa0641a83e7e600d6519dee3689715c11e2c81996&' },
+    { type: 'video', src: 'https://cdn.discordapp.com/attachments/1136594975061188669/1342614879269421177/2025-02-21_22-52-05.mp4?ex=69bbc74b&is=69ba75cb&hm=7d9987f9dfd20cf5c1d877cffe5ae8ba3c1f730748dbbf2bb7cbd8f6d46efa73&' },
+  ];
+
+  const INTERVAL = 5000; 
+
+
+  for (let i = SLIDES.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [SLIDES[i], SLIDES[j]] = [SLIDES[j], SLIDES[i]];
+  }
+
+  const bg       = document.getElementById('heroBg');
+  const dotsEl   = document.getElementById('heroDots');
+  const progressEl = document.getElementById('heroProgress');
+
+  let current = 0;
+  let timer   = null;
+  let progTimer = null;
+
+  // Build slide elements
+  const slideEls = SLIDES.map((s, i) => {
+    const div = document.createElement('div');
+    div.className = 'hero-slide' + (i === 0 ? ' active' : '');
+
+    if (s.type === 'video') {
+      const v = document.createElement('video');
+      v.src = s.src;
+      v.muted = true;
+      v.loop = false; // we'll advance manually or after interval
+      v.autoplay = false;
+      v.playsInline = true;
+      div.appendChild(v);
+    } else {
+      const img = document.createElement('img');
+      img.src = s.src;
+      img.alt = '';
+      div.appendChild(img);
+    }
+
+    bg.appendChild(div);
+    return div;
+  });
+
+
+  const dotEls = SLIDES.map((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', `Slide ${i + 1}`);
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+    return d;
+  });
+
+  function startProgress(duration) {
+    progressEl.style.transition = 'none';
+    progressEl.style.width = '0%';
+    // force reflow
+    progressEl.offsetWidth;
+    progressEl.style.transition = `width ${duration}ms linear`;
+    progressEl.style.width = '100%';
+  }
+
+  function goTo(idx) {
+    clearTimeout(timer);
+    clearTimeout(progTimer);
+
+    // Pause any playing video in current slide
+    const curVideo = slideEls[current].querySelector('video');
+    if (curVideo) curVideo.pause();
+
+    slideEls[current].classList.remove('active');
+    dotEls[current].classList.remove('active');
+
+    current = (idx + SLIDES.length) % SLIDES.length;
+
+    slideEls[current].classList.add('active');
+    dotEls[current].classList.add('active');
+
+    const newVideo = slideEls[current].querySelector('video');
+    if (newVideo) {
+      newVideo.currentTime = 0;
+      newVideo.play().catch(() => {});
+      // Advance after video duration or max INTERVAL
+      const onMeta = () => {
+        const dur = Math.min(newVideo.duration * 1000, INTERVAL);
+        startProgress(dur);
+        timer = setTimeout(() => goTo(current + 1), dur);
+        newVideo.removeEventListener('loadedmetadata', onMeta);
+      };
+      if (newVideo.readyState >= 1) {
+        const dur = Math.min(newVideo.duration * 1000, INTERVAL);
+        startProgress(dur);
+        timer = setTimeout(() => goTo(current + 1), dur);
+      } else {
+        newVideo.addEventListener('loadedmetadata', onMeta);
+        // fallback if metadata never fires
+        startProgress(INTERVAL);
+        timer = setTimeout(() => goTo(current + 1), INTERVAL);
+      }
+    } else {
+      startProgress(INTERVAL);
+      timer = setTimeout(() => goTo(current + 1), INTERVAL);
+    }
+  }
+
+
+  goTo(0);
+
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearTimeout(timer);
+      const curVideo = slideEls[current].querySelector('video');
+      if (curVideo) curVideo.pause();
+    } else {
+      goTo(current);
+    }
+  });
+})();
+</script>
+</body>
+</html>
