@@ -650,7 +650,7 @@
         <label>What do you need?</label>
         <select id="ftype">
           <option value="">Select a service…</option>
-          <option>Map / Environment build</option>
+          <option>Building</option>
           <option>UI / GUI design</option>
           <option>3D model or animation</option>
           <option>2D asset / sprite</option>
@@ -783,7 +783,7 @@
     if (newVideo) {
       newVideo.currentTime = 0;
       newVideo.play().catch(() => {});
-      // Advance after video duration or max INTERVAL
+
       const onMeta = () => {
         const dur = Math.min(newVideo.duration * 1000, INTERVAL);
         startProgress(dur);
