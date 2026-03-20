@@ -23,7 +23,7 @@ function openLightbox(card) {
   if (video) {
     media.innerHTML = '';
     const v = document.createElement('video');
-    v.src = video.src; v.controls = true; v.autoplay = true; v.muted = true;
+    v.src = video.src; v.controls = false; v.autoplay = true; v.muted = true;
     media.appendChild(v);
   } else if (img) {
     media.innerHTML = '';
